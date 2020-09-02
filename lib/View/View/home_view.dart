@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:harrypotterapp/Core/Components/FutureBuilder/http_future_builder.dart';
+import 'package:harrypotterapp/Core/Extension/string_extension.dart';
 import 'package:harrypotterapp/Core/Service/Network/Response/responseModel.dart';
 import 'package:harrypotterapp/Core/Service/Network/network_service.dart';
 import 'package:harrypotterapp/View/Components/characterslist.dart';
@@ -31,7 +32,9 @@ class _HomeViewState extends State<HomeView> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(),
+        appBar: AppBar(
+          title: Text("hello".locale),
+        ),
         body: SizedBox(
           width: double.infinity,
           height: double.infinity,
