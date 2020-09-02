@@ -19,13 +19,13 @@ class HttpFutureBuilder<T extends IResponseModel> extends StatelessWidget {
         if (snapshot.hasData) {
           if (!snapshot.data.isSucces) {
             return Center(
-              child: Text("${snapshot.data.error}"),
+              child: Text("${snapshot.data.error.errorMessage}"),
             );
           }
           return onSucces(snapshot.data);
         } else if (snapshot.hasError) {
           return Center(
-            child: Text(" - ${snapshot.hasError}"),
+            child: Text("${snapshot.hasError.toString()}"),
           );
         } else {
           return Center(

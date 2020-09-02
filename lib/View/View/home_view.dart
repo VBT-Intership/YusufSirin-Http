@@ -28,16 +28,7 @@ class _HomeViewState extends State<HomeView> {
       child: Scaffold(
         key: _globalKey,
         appBar: buildAppBar(),
-        body: SizedBox(
-          width: context.width,
-          height: context.height,
-          child: HttpFutureBuilder<ResponseModel<HPCharacters>>(
-            future: viewModel.characters,
-            onSucces: (data) {
-              return CharactersList(data: data);
-            },
-          ),
-        ),
+        body: buildBody(context),
       ),
     );
   }
@@ -53,7 +44,24 @@ class _HomeViewState extends State<HomeView> {
           );
         },
       ),
-      title: Text("hello".locale),
+      title: Text(
+        "characters".locale,
+        style: context.textTheme.headline5
+            .copyWith(color: context.theme.backgroundColor),
+      ),
+    );
+  }
+
+  SizedBox buildBody(BuildContext context) {
+    return SizedBox(
+      width: context.width,
+      height: context.height,
+      child: HttpFutureBuilder<ResponseModel<HPCharacters>>(
+        future: viewModel.characters,
+        onSucces: (data) {
+          return CharactersList(list: data.list);
+        },
+      ),
     );
   }
 }

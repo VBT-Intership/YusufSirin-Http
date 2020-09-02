@@ -30,6 +30,7 @@ class NetworkService {
       return getResponseModel<T>(
           response: response, model: model, responseModel: responseModel);
     } catch (e) {
+      print("object");
       responseModel.error = ErrorMessage(errorMessage: e.toString());
       return responseModel;
     }
@@ -40,14 +41,18 @@ class NetworkService {
     @required BaseModel model,
     @required IResponseModel responseModel,
   }) async {
-    final responseBody = json.decode(response.body);
     switch (response.statusCode) {
       case HttpStatus.ok:
+        final responseBody = json.decode(response.body);
         if (responseBody is List) {
           responseModel.list =
               responseBody.map((e) => model.fromJson(e)).toList().cast<T>();
         } else if (responseBody is Map) {
           responseModel.map = model.fromJson(responseBody);
+        } else {
+          responseModel.error =
+              ErrorMessage(errorMessage: response.statusCode.toString());
+          break;
         }
         responseModel.isSucces = true;
         break;

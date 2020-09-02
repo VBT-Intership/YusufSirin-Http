@@ -1,12 +1,13 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:harrypotterapp/Core/Constants/app_constanst.dart';
-import 'package:harrypotterapp/Core/Extension/context_extension.dart';
-import 'package:harrypotterapp/Core/Extension/locale_extension.dart';
-import 'package:harrypotterapp/Core/Extension/string_extension.dart';
-import 'package:harrypotterapp/Core/Notifier/themeprovider.dart';
-import 'package:harrypotterapp/Core/Service/Localization/language_service.dart';
 import 'package:provider/provider.dart';
+
+import '../../Core/Constants/app_constanst.dart';
+import '../../Core/Extension/context_extension.dart';
+import '../../Core/Extension/locale_extension.dart';
+import '../../Core/Extension/string_extension.dart';
+import '../../Core/Notifier/themeprovider.dart';
+import '../../Core/Service/Localization/language_service.dart';
 
 class BottomSheetPanelBody extends StatelessWidget {
   const BottomSheetPanelBody({
@@ -16,7 +17,10 @@ class BottomSheetPanelBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: context.height * .25,
+      constraints: BoxConstraints(
+        maxHeight: context.height * .25,
+        minHeight: context.height * .15,
+      ),
       color: context.theme.primaryColor,
       alignment: Alignment.center,
       child: Column(
@@ -26,34 +30,6 @@ class BottomSheetPanelBody extends StatelessWidget {
           buildRowLang(context),
         ],
       ),
-    );
-  }
-
-  Row buildRowLang(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: LanguageService.instance.locales
-          .map(
-            (e) => FlatButton(
-              onPressed: () {
-                EasyLocalization.of(context).locale = e;
-              },
-              child: Container(
-                alignment: Alignment.center,
-                width: context.width * .2,
-                padding: EdgeInsets.symmetric(vertical: context.constLowValue),
-                decoration: EasyLocalization.of(context).locale == e
-                    ? buildBoxDecorationHight(context)
-                    : buildBoxDecorationLow(context),
-                child: Text(
-                  e.localeTag,
-                  style: context.textTheme.bodyText1
-                      .copyWith(color: context.theme.backgroundColor),
-                ),
-              ),
-            ),
-          )
-          .toList(),
     );
   }
 
@@ -85,6 +61,34 @@ class BottomSheetPanelBody extends StatelessWidget {
               ),
             )
             .toList());
+  }
+
+  Row buildRowLang(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: LanguageService.instance.locales
+          .map(
+            (e) => FlatButton(
+              onPressed: () {
+                EasyLocalization.of(context).locale = e;
+              },
+              child: Container(
+                alignment: Alignment.center,
+                width: context.width * .2,
+                padding: EdgeInsets.symmetric(vertical: context.constLowValue),
+                decoration: EasyLocalization.of(context).locale == e
+                    ? buildBoxDecorationHight(context)
+                    : buildBoxDecorationLow(context),
+                child: Text(
+                  e.localeTag,
+                  style: context.textTheme.bodyText1
+                      .copyWith(color: context.theme.backgroundColor),
+                ),
+              ),
+            ),
+          )
+          .toList(),
+    );
   }
 
   BoxDecoration buildBoxDecorationHight(BuildContext context) {
