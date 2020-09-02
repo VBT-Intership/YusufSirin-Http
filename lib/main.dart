@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:harrypotterapp/View/home_view.dart';
+import 'package:harrypotterapp/View/View/home_view.dart';
 
 void main() {
   runApp(MyApp());

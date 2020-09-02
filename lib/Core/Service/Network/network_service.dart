@@ -26,7 +26,7 @@ class NetworkService {
   }) async {
     IResponseModel<T> responseModel = ResponseModel<T>();
     try {
-      final response = await http.get(url, headers: headers);
+      final response = await http.get(url);
       return getResponseModel<T>(
           response: response, model: model, responseModel: responseModel);
     } catch (e) {
@@ -44,6 +44,7 @@ class NetworkService {
     switch (response.statusCode) {
       case HttpStatus.ok:
         if (responseBody is List) {
+          print("List");
           responseModel.list =
               responseBody.map((e) => model.fromJson(e)).toList().cast<T>();
         } else if (responseBody is Map) {
@@ -55,6 +56,7 @@ class NetworkService {
         responseModel.error =
             ErrorMessage(errorMessage: response.statusCode.toString());
     }
+    print(responseModel.list[2].toString());
     return responseModel;
   }
 }
