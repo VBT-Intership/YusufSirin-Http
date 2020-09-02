@@ -5,7 +5,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-import '../../Base/basemodel.dart';
+import '../../Base/base_model.dart';
 import 'Response/Error/errorMessage.dart';
 import 'Response/IResponseModel.dart';
 import 'Response/responseModel.dart';
@@ -44,7 +44,6 @@ class NetworkService {
     switch (response.statusCode) {
       case HttpStatus.ok:
         if (responseBody is List) {
-          print("List");
           responseModel.list =
               responseBody.map((e) => model.fromJson(e)).toList().cast<T>();
         } else if (responseBody is Map) {
@@ -56,7 +55,6 @@ class NetworkService {
         responseModel.error =
             ErrorMessage(errorMessage: response.statusCode.toString());
     }
-    print(responseModel.list[2].toString());
     return responseModel;
   }
 }

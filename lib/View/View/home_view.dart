@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:harrypotterapp/Core/Components/FutureBuilder/http_future_builder.dart';
+import 'package:harrypotterapp/View/Components/bottom_sheet_panel_body.dart';
+import 'package:harrypotterapp/Core/Extension/context_extension.dart';
 import 'package:harrypotterapp/Core/Extension/string_extension.dart';
 import 'package:harrypotterapp/Core/Service/Network/Response/responseModel.dart';
-import 'package:harrypotterapp/Core/Service/Network/network_service.dart';
 import 'package:harrypotterapp/View/Components/characterslist.dart';
 import 'package:harrypotterapp/View/Model/hp_c.dart';
+import 'package:harrypotterapp/View/ViewModel/home_view_model.dart';
 
 class HomeView extends StatefulWidget {
   @override
@@ -12,46 +14,46 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
-  Future<ResponseModel<HPCharacters>> characters;
-
-  Future<ResponseModel<HPCharacters>> fetchCharacters() async {
-    ResponseModel<HPCharacters> fetchcharacters = await NetworkService.instance
-        .httpGet<HPCharacters>(
-            url: "http://hp-api.herokuapp.com/api/characters",
-            model: HPCharacters());
-    return fetchcharacters;
-  }
-
+  GlobalKey<ScaffoldState> _globalKey = GlobalKey<ScaffoldState>();
+  HomeViewModel viewModel = HomeViewModel();
   @override
   void initState() {
     super.initState();
-    characters = fetchCharacters();
+    viewModel.init();
   }
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          title: Text("hello".locale),
-        ),
+        key: _globalKey,
+        appBar: buildAppBar(),
         body: SizedBox(
-          width: double.infinity,
-          height: double.infinity,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              HttpFutureBuilder<ResponseModel<HPCharacters>>(
-                future: characters,
-                onSucces: (data) {
-                  return CharactersList(data: data);
-                },
-              ),
-            ],
+          width: context.width,
+          height: context.height,
+          child: HttpFutureBuilder<ResponseModel<HPCharacters>>(
+            future: viewModel.characters,
+            onSucces: (data) {
+              return CharactersList(data: data);
+            },
           ),
         ),
       ),
+    );
+  }
+
+  AppBar buildAppBar() {
+    return AppBar(
+      backgroundColor: context.theme.primaryColor,
+      leading: IconButton(
+        icon: Icon(Icons.menu),
+        onPressed: () {
+          _globalKey.currentState.showBottomSheet(
+            (context) => BottomSheetPanelBody(),
+          );
+        },
+      ),
+      title: Text("hello".locale),
     );
   }
 }

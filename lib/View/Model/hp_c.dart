@@ -1,4 +1,4 @@
-import 'package:harrypotterapp/Core/Base/basemodel.dart';
+import 'package:harrypotterapp/Core/Base/base_model.dart';
 
 class HPCharacters extends BaseModel {
   String name;

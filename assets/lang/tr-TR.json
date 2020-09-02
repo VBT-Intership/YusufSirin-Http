@@ -1,3 +1,5 @@
 {
-    "hello": "Hosgeldiniz"
+    "hello": "Hosgeldiniz",
+    "DARK": "Siyah",
+    "LIGHT": "Acik"
 }
