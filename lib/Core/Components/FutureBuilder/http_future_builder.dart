@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:harrypotterapp/Core/Service/Network/Response/responseModel.dart';
+import 'package:harrypotterapp/Core/Service/Network/Response/IResponseModel.dart';
 
-class HttpFutureBuilder<T extends ResponseModel> extends StatelessWidget {
+class HttpFutureBuilder<T extends IResponseModel> extends StatelessWidget {
   final Future<T> future;
   final Function(T data) onSucces;
 

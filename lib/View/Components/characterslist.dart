@@ -18,7 +18,7 @@ class CharactersList extends StatelessWidget {
         itemBuilder: (context, index) {
           return ListTile(
             title: Text(data.list[index].name.toString()),
-            subtitle: Text(data.list[index].wand.core),
+            subtitle: Text(data.list[index].house),
             leading: Text(
               data.list[index].gender,
             ),
