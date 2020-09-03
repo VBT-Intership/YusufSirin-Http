@@ -1,7 +1,7 @@
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 
-import 'themeprovider.dart';
+import 'theme_provider.dart';
 
 class AppProvider {
   static AppProvider _instance;

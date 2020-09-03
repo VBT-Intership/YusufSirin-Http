@@ -1,5 +1,5 @@
 import 'Error/IError.dart';
-import 'IResponseModel.dart';
+import 'IResponse_model.dart';
 
 class ResponseModel<T> extends IResponseModel<T> {
   T map;

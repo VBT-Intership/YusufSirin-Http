@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:harrypotterapp/Core/Theme/darktheme.dart';
-import 'package:harrypotterapp/Core/Theme/lighttheme.dart';
+
+import '../../Theme/darktheme.dart';
+import '../../Theme/lighttheme.dart';
 
 class AppConstansts {
   static const appName = "Harry Potter Characters";

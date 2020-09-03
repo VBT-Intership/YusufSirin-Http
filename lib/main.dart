@@ -2,9 +2,9 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'Core/Constants/app_constanst.dart';
+import 'Core/Constants/App/app_constanst.dart';
 import 'Core/Notifier/app_provider.dart';
-import 'Core/Notifier/themeprovider.dart';
+import 'Core/Notifier/theme_provider.dart';
 import 'Core/Service/Localization/language_service.dart';
 import 'View/View/home_view.dart';
 

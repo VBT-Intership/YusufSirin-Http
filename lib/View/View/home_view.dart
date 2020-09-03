@@ -3,8 +3,8 @@ import 'package:harrypotterapp/Core/Components/FutureBuilder/http_future_builder
 import 'package:harrypotterapp/View/Components/bottom_sheet_panel_body.dart';
 import 'package:harrypotterapp/Core/Extension/context_extension.dart';
 import 'package:harrypotterapp/Core/Extension/string_extension.dart';
-import 'package:harrypotterapp/Core/Service/Network/Response/responseModel.dart';
-import 'package:harrypotterapp/View/Components/characterslist.dart';
+import 'package:harrypotterapp/Core/Service/Network/Response/response_model.dart';
+import 'package:harrypotterapp/View/Components/characters_list.dart';
 import 'package:harrypotterapp/View/Model/hp_c.dart';
 import 'package:harrypotterapp/View/ViewModel/home_view_model.dart';
 

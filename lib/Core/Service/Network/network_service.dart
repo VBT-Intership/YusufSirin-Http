@@ -6,9 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 import '../../Base/base_model.dart';
-import 'Response/Error/errorMessage.dart';
-import 'Response/IResponseModel.dart';
-import 'Response/responseModel.dart';
+import 'Response/Error/error_message.dart';
+import 'Response/IResponse_model.dart';
+import 'Response/response_model.dart';
 
 class NetworkService {
   static NetworkService _instance;

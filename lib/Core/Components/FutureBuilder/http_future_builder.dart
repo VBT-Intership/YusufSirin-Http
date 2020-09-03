@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:harrypotterapp/Core/Service/Network/Response/IResponseModel.dart';
+import 'package:harrypotterapp/Core/Service/Network/Response/IResponse_model.dart';
 
 class HttpFutureBuilder<T extends IResponseModel> extends StatelessWidget {
   final Future<T> future;

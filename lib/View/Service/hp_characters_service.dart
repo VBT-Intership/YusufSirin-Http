@@ -1,9 +1,9 @@
-import '../../Core/Service/Network/Response/responseModel.dart';
+import '../../Core/Service/Network/Response/response_model.dart';
 import '../../Core/Service/Network/network_service.dart';
 import '../Model/hp_c.dart';
 
 class HarrpPotterCharactersService {
-  static const _baseUrl = "http://hp-api.herokusapp.com/api/";
+  static const _baseUrl = "http://hp-api.herokuapp.com/api/";
 
   final networkService = NetworkService.instance;
   Future<ResponseModel<HPCharacters>> fetchCharacters() async {
