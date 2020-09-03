@@ -30,7 +30,6 @@ class NetworkService {
       return getResponseModel<T>(
           response: response, model: model, responseModel: responseModel);
     } catch (e) {
-      print("object");
       responseModel.error = ErrorMessage(errorMessage: e.toString());
       return responseModel;
     }

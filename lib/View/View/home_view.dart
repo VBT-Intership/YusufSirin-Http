@@ -4,7 +4,7 @@ import 'package:harrypotterapp/View/Components/bottom_sheet_panel_body.dart';
 import 'package:harrypotterapp/Core/Extension/context_extension.dart';
 import 'package:harrypotterapp/Core/Extension/string_extension.dart';
 import 'package:harrypotterapp/Core/Service/Network/Response/response_model.dart';
-import 'package:harrypotterapp/View/Components/characters_list.dart';
+import 'package:harrypotterapp/View/Components/list_tile_charters.dart';
 import 'package:harrypotterapp/View/Model/hp_c.dart';
 import 'package:harrypotterapp/View/ViewModel/home_view_model.dart';
 
@@ -59,9 +59,25 @@ class _HomeViewState extends State<HomeView> {
       child: HttpFutureBuilder<ResponseModel<HPCharacters>>(
         future: viewModel.characters,
         onSucces: (data) {
-          return CharactersList(list: data.list);
+          return buildList(data.list);
         },
       ),
+    );
+  }
+
+  Widget buildList(List<HPCharacters> list) {
+    return ListView.builder(
+      shrinkWrap: true,
+      itemCount: list.length,
+      itemBuilder: (context, index) {
+        var character = list[index];
+        return InkWell(
+          onTap: () {
+            viewModel.navigateToDetailPage(character);
+          },
+          child: ListTileCharacter(character: character),
+        );
+      },
     );
   }
 }

@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:harrypotterapp/Core/Service/Navigation/navigation_service.dart';
 import 'package:provider/provider.dart';
 
 import 'Core/Constants/App/app_constanst.dart';
@@ -27,6 +28,7 @@ class MyApp extends StatelessWidget {
       localizationsDelegates: context.localizationDelegates,
       supportedLocales: context.supportedLocales,
       locale: context.locale,
+      navigatorKey: NavigatorService.instance.navigatorKey,
       title: AppConstansts.appName,
       theme: Provider.of<ThemeProvider>(context).getTheme,
       home: HomeView(),
